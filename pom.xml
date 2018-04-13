@@ -5,7 +5,25 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>ParkingDemo</name>
   <description>Parking Demo</description>
-  
+   <build>
+        <plugins>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.parking.MainApp</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
   <!-- Junit dependency  -->
   <dependencies>
         <dependency>
