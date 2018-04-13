@@ -34,7 +34,49 @@ public class ParkingTestCases {
         assertEquals(5, parkingLotUtility.listOfAvailableSlots.size());
 
 	}
+	@Test
+	public void testStatus() {
+		parkingLotUtility.status();
+		parkingLotUtility.createParkingLot("6");
+		parkingLotUtility.doParking("KA-01-HH-1234", "White");
+		parkingLotUtility.doParking("KA-01-HH-9999", "White");
+		parkingLotUtility.status();
+	}
 	
-	
+	 @Test
+	    public void testRegNumsFromColor() throws Exception {
+		 parkingLotUtility.getRegistrationNumbersFromcolorOfCar("White");
+		 parkingLotUtility.createParkingLot("6");
+		 parkingLotUtility.doParking("KA-01-HH-1234", "White");
+		 parkingLotUtility.doParking("KA-01-HH-9999", "White");
+		 parkingLotUtility.getRegistrationNumbersFromcolorOfCar("White");	       
+		 parkingLotUtility.getRegistrationNumbersFromcolorOfCar("Red");
+	       
+	    }
+
+	    @Test
+	    public void testSlotNumbersFromColor() throws Exception {
+	    	parkingLotUtility.getSlotNumbersFromcolorOfCar("White");
+	    	parkingLotUtility.createParkingLot("6");
+	    	parkingLotUtility.doParking("KA-01-HH-1234", "White");
+	    	parkingLotUtility.doParking("KA-01-HH-9999", "White");
+	        parkingLotUtility.getSlotNumbersFromcolorOfCar("White");	        
+	        parkingLotUtility.getSlotNumbersFromcolorOfCar("Red");
+	       
+	    }
+
+	    @Test
+	    public void testSlotNumberFromRegNo() throws Exception {
+	    	parkingLotUtility.getSlotNumberFromregistrationNumbers("KA-01-HH-1234");
+	    	parkingLotUtility.createParkingLot("6");
+	    	parkingLotUtility.doParking("KA-01-HH-1234", "White");
+	    	parkingLotUtility.doParking("KA-01-HH-9999", "White");
+	    	parkingLotUtility.getSlotNumberFromregistrationNumbers("KA-01-HH-1234");
+	        
+	    	parkingLotUtility.getSlotNumberFromregistrationNumbers("KA-01-HH-9999");
+	        
+	    	parkingLotUtility.leave("1");
+	    	parkingLotUtility.getSlotNumberFromregistrationNumbers("KA-01-HH-1234");
+	       	}
 
 }

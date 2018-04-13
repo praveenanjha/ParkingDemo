@@ -82,4 +82,80 @@ public class ParkingLotUtility {
             System.out.println();
         }
     }
+	public void status() {
+        if (this.size == 0) {
+            System.out.println("Sorry, parking lot is not created");
+            System.out.println();
+        } else if (this.slotAndCarMap.size() > 0) {
+            // Print the current status.
+            System.out.println("Slot No.\tRegistration No.\tcolorOfCar");
+            Car car;
+            for (int i = 1; i <= this.size; i++) {
+                String key = Integer.toString(i);
+                if (this.slotAndCarMap.containsKey(key)) {
+                    car = this.slotAndCarMap.get(key);
+                    System.out.println(i + "\t" + car.registrationNumbers + "\t" + car.colorOfCar);
+                }
+            }
+            System.out.println();
+        } else {
+            System.out.println("Parking lot is empty");
+            System.out.println();
+        }
+    }
+	public void getRegistrationNumbersFromcolorOfCar(String colorOfCar) {
+        if (this.size == 0) {
+            System.out.println("Sorry, parking lot is not created");
+            System.out.println();
+        } else if (this.colorOfCarandListofregistrationNumbersMap.containsKey(colorOfCar)) {
+            ArrayList<String> registrationNumbersList = this.colorOfCarandListofregistrationNumbersMap.get(colorOfCar);
+            System.out.println();
+            for (int i=0; i < registrationNumbersList.size(); i++) {
+                if (!(i==registrationNumbersList.size() - 1)){
+                    System.out.print(registrationNumbersList.get(i) + ",");
+                } else {
+                    System.out.print(registrationNumbersList.get(i));
+                }
+            }
+        } else {
+            System.out.println("Not found");
+            System.out.println();
+        }
+    }
+    public void getSlotNumbersFromcolorOfCar(String colorOfCar) {
+        if (this.size == 0) {
+            System.out.println("Sorry, parking lot is not created");
+            System.out.println();
+        } else if (this.colorOfCarandListofregistrationNumbersMap.containsKey(colorOfCar)) {
+            ArrayList<String> registrationNumbersList = this.colorOfCarandListofregistrationNumbersMap.get(colorOfCar);
+            ArrayList<Integer> slotList = new ArrayList<Integer>();
+            System.out.println();
+            for (int i=0; i < registrationNumbersList.size(); i++) {
+                slotList.add(Integer.valueOf(this.RegNumAndSlotMap.get(registrationNumbersList.get(i))));
+            }
+            Collections.sort(slotList);
+            for (int j=0; j < slotList.size(); j++) {
+                if (!(j == slotList.size() - 1)) {
+                    System.out.print(slotList.get(j) + ",");
+                } else {
+                    System.out.print(slotList.get(j));
+                }
+            }
+            System.out.println();
+        } else {
+            System.out.println("Not found");
+            System.out.println();
+        }
+    }
+    public void getSlotNumberFromregistrationNumbers(String registrationNumbers) {
+        if (this.size == 0) {
+            System.out.println("Sorry, parking lot is not created");
+            System.out.println();
+        } else if (this.RegNumAndSlotMap.containsKey(registrationNumbers)) {
+            System.out.println(this.RegNumAndSlotMap.get(registrationNumbers));
+        } else {
+            System.out.println("Not found");
+            System.out.println();
+        }
+    }
 }
