@@ -1,6 +1,7 @@
 package com.parking;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,8 +29,31 @@ public class ParkingLotUtility {
 	public void doParking(String registrationNumbers, String colorOfCar) {
 		// TODO Auto-generated method stub
 		
-		System.out.println("Created parking lot with " + registrationNumbers + " :"+colorOfCar);
-
-	}
+		 if (this.size == 0) {
+	            System.out.println("Parking lot is not created");
+	        } else if (this.slotAndCarMap.size() == this.size) {
+	            System.out.println("Sorry, parking lot is full");
+	            System.out.println();
+	        } else {
+	            Collections.sort(listOfAvailableSlots);
+	            String slot = listOfAvailableSlots.get(0).toString();
+	            Car car = new Car(registrationNumbers, colorOfCar);
+	            this.slotAndCarMap.put(slot, car);
+	            this.RegNumAndSlotMap.put(registrationNumbers, slot);
+	            if (this.colorOfCarandListofregistrationNumbersMap.containsKey(colorOfCar)) {
+	                ArrayList<String> registrationNumbersList = this.colorOfCarandListofregistrationNumbersMap.get(colorOfCar);
+	                this.colorOfCarandListofregistrationNumbersMap.remove(colorOfCar);
+	                registrationNumbersList.add(registrationNumbers);
+	                this.colorOfCarandListofregistrationNumbersMap.put(colorOfCar, registrationNumbersList);
+	            } else {
+	                ArrayList<String> registrationNumbersList = new ArrayList<String>();
+	                registrationNumbersList.add(registrationNumbers);
+	                this.colorOfCarandListofregistrationNumbersMap.put(colorOfCar, registrationNumbersList);
+	            }
+	            System.out.println("Allocated slot number: " + slot);
+	            System.out.println();
+	            listOfAvailableSlots.remove(0);
+	        }
+}
 
 }
